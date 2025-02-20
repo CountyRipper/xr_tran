@@ -27,4 +27,7 @@ typing-extensions==4.8.0
 urllib3==1.26.7
 yarg==0.1.9
 zipp==3.5.1
-libpecos==0.2.2
+#libpecos==1.2.8 本地安装
+# git clone https://github.com/amzn/pecos
+# cd pecos
+# python3 -m pip install --editable ./
