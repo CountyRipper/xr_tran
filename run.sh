@@ -3,7 +3,7 @@ data_dir="./xmc-base/${data}/"
 
 if [ ${data} == "eurlex-4k" ]; then
 	#models=(bert roberta xlnet)
-	models=(bert)
+	models=(xlnet)
 	ens_method=softmax_average
 elif [ ${data} == "wiki10-31k" ]; then
 	models=(roberta)
