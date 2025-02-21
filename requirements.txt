@@ -30,4 +30,4 @@ zipp==3.5.1
 #libpecos==1.2.8 本地安装
 # git clone https://github.com/amzn/pecos
 # cd pecos
-# python3 -m pip install --editable ./
+# python3 -m pip install --use-pep517 --editable ./

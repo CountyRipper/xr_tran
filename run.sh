@@ -6,10 +6,10 @@ if [ ${data} == "eurlex-4k" ]; then
 	models=(bert)
 	ens_method=softmax_average
 elif [ ${data} == "wiki10-31k" ]; then
-	models=(bert)
+	models=(roberta)
 	ens_method=rank_average
 elif [ ${data} == "amazoncat-13k" ]; then
-	models=(bert roberta xlnet)
+	models=(bert)
 	ens_method=softmax_average
 elif [ ${data} == "wiki-500k" ]; then
 	models=(bert1 bert2 bert3)

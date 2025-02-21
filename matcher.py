@@ -228,6 +228,8 @@ class TransformerMatcher(pecos.BaseClass):
         self.concat_model = concat_model
 
         self.train_params = self.TrainParams.from_dict(train_params)
+        #
+        LOGGER.info(f'dxt matcher: train.paramas: {str(self.train_params)}')
         self.pred_params = self.PredParams.from_dict(pred_params)
 
         # This is for tokenizers that rely on Sentencepiece (e.x. XLNetTokenizer)

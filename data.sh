@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # valid dataset
-VALID_DATASETS="eurlex-4k wiki10-31k amazon-3m amazon-670k wiki-500k"
+VALID_DATASETS="eurlex-4k wiki10-31k amazon-3m amazon-670k wiki-500k amazoncat-13k"
 DOWNLOAD_BASE_URL="https://archive.org/download/pecos-dataset/xmc-base"
 DATASET_DIR="./xmc-base"
 
