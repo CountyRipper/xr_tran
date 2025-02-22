@@ -2,7 +2,8 @@
 # 开启错误检测，任何命令失败则退出脚本
 echo "激活 conda 环境 'dxt'..."
 conda activate dxt
-
+git config --global user.name "maverick"
+git config --global user.email "maverick6313@gmail.com"
 # ----------------------------
 # 4. 克隆并安装 pecos 项目
 # ----------------------------
