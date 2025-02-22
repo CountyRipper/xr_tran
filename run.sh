@@ -12,13 +12,13 @@ elif [ ${data} == "amazoncat-13k" ]; then
 	models=(bert)
 	ens_method=softmax_average
 elif [ ${data} == "wiki-500k" ]; then
-	models=(bert1 bert2 bert3)
+	models=(bert1)
 	ens_method=sigmoid_average
 elif [ ${data} == "amazon-670k" ]; then
-	models=(bert1 bert2 bert3)
+	models=(bert1)
 	ens_method=softmax_average
 elif [ ${data} == "amazon-3m" ]; then
-	models=(bert1 bert2 bert3)
+	models=(bert1)
 	ens_method=rank_average
 else
 	echo Unknown dataset $1!

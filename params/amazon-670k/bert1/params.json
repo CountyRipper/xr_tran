@@ -1,7 +1,7 @@
 {
  "train_params": {
   "__meta__": {
-   "class_fullname": "pecos.xmc.xtransformer.model###XTransformer.TrainParams"
+   "class_fullname": "model###XTransformer.TrainParams"
   },
   "preliminary_indexer_params": {
    "__meta__": {
@@ -34,7 +34,7 @@
   "matcher_params_chain": [
    {
     "__meta__": {
-     "class_fullname": "pecos.xmc.xtransformer.matcher###TransformerMatcher.TrainParams"
+     "class_fullname": "matcher###TransformerMatcher.TrainParams"
     },
     "model_shortcut": "bert-base-uncased",
     "negative_sampling": "tfn+man",
@@ -66,7 +66,7 @@
    },
    {
     "__meta__": {
-     "class_fullname": "pecos.xmc.xtransformer.matcher###TransformerMatcher.TrainParams"
+     "class_fullname": "matcher###TransformerMatcher.TrainParams"
     },
     "model_shortcut": "bert-base-uncased",
     "negative_sampling": "tfn+man",
@@ -98,7 +98,7 @@
    },
    {
     "__meta__": {
-     "class_fullname": "pecos.xmc.xtransformer.matcher###TransformerMatcher.TrainParams"
+     "class_fullname": "matcher###TransformerMatcher.TrainParams"
     },
     "model_shortcut": "bert-base-uncased",
     "negative_sampling": "tfn+man",
@@ -226,12 +226,12 @@
  },
  "pred_params": {
   "__meta__": {
-   "class_fullname": "pecos.xmc.xtransformer.model###XTransformer.PredParams"
+   "class_fullname": "model###XTransformer.PredParams"
   },
   "matcher_params_chain": [
    {
     "__meta__": {
-     "class_fullname": "pecos.xmc.xtransformer.matcher###TransformerMatcher.PredParams"
+     "class_fullname": "matcher###TransformerMatcher.PredParams"
     },
     "only_topk": 5,
     "post_processor": "l3-hinge",
@@ -240,7 +240,7 @@
    },
    {
     "__meta__": {
-     "class_fullname": "pecos.xmc.xtransformer.matcher###TransformerMatcher.PredParams"
+     "class_fullname": "matcher###TransformerMatcher.PredParams"
     },
     "only_topk": 5,
     "post_processor": "l3-hinge",
@@ -249,7 +249,7 @@
    },
    {
     "__meta__": {
-     "class_fullname": "pecos.xmc.xtransformer.matcher###TransformerMatcher.PredParams"
+     "class_fullname": "matcher###TransformerMatcher.PredParams"
     },
     "only_topk": 5,
     "post_processor": "l3-hinge",
