@@ -20,10 +20,11 @@ sentencepiece==0.1.96
 six==1.16.0
 threadpoolctl==2.2.0
 tokenizers==0.10.3
---extra-index-url https://download.pytorch.org/whl/cu128
+--extra-index-url https://download.pytorch.org/whl/nightly/cu128
+--pre
 torch
 tqdm==4.66.3
-transformers==4.11.0
+transformers==4.31.0
 typing-extensions==4.8.0
 urllib3==1.26.7
 yarg==0.1.9
