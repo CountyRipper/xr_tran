@@ -379,6 +379,7 @@ class XTransformer(pecos.BaseClass):
             M, val_M = None, None
             M_pred, val_M_pred = None, None
             bootstrapping, inst_embeddings = None, None
+            # fine-tune each matcher of XTransformer
             for i in range(nr_transformers):
                 cur_train_params = train_params.matcher_params_chain[i]
                 cur_pred_params = pred_params.matcher_params_chain[i]
@@ -420,7 +421,7 @@ class XTransformer(pecos.BaseClass):
                         cur_ns, i, YC_list[i].shape[1], avr_trn_labels
                     )
                 )
-
+                #继承上层参数
                 # bootstrapping with previous text_encoder and instance embeddings
                 if parent_model is not None:
                     init_encoder = deepcopy(parent_model.text_encoder)
@@ -438,6 +439,7 @@ class XTransformer(pecos.BaseClass):
 
                 # determine whether train instance embeddings are needed
                 if i == nr_transformers - 1:
+                    #最后一层时
                     return_embed_on_trn = not train_params.only_encoder
                 else:
                     return_embed_on_trn = (
@@ -463,7 +465,9 @@ class XTransformer(pecos.BaseClass):
                 val_M_pred = res_dict["val_pred"]
                 inst_embeddings = res_dict["trn_embeddings"]
 
+        #进入ranker训练阶段
         ranker = None
+        #如果不仅仅是XTransformer的matcher训练，还训练MLMHeadModel-> XLinearModel 线性排序模型
         if not train_params.only_encoder:
             # construct X_concat
             X_concat = TransformerMatcher.concat_features(

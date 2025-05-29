@@ -29,7 +29,7 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from transformers import AdamW, AutoConfig, get_scheduler, BatchEncoding
 
 from module import XMCLabelTensorizer, XMCTextTensorizer, XMCTextDataset
-from pecos.xmc.xtransformer.network import ENCODER_CLASSES, HingeLoss, TransformerLinearXMCHead
+from network import ENCODER_CLASSES, HingeLoss, TransformerLinearXMCHead
 
 logging.getLogger(transformers.__name__).setLevel(logging.WARNING)
 
