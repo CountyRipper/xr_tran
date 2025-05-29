@@ -380,6 +380,7 @@ class XTransformer(pecos.BaseClass):
             M_pred, val_M_pred = None, None
             bootstrapping, inst_embeddings = None, None
             # fine-tune each matcher of XTransformer
+            #按照粗排HLT的层数进行TransformerMatcher的训练
             for i in range(nr_transformers):
                 cur_train_params = train_params.matcher_params_chain[i]
                 cur_pred_params = pred_params.matcher_params_chain[i]
@@ -448,15 +449,15 @@ class XTransformer(pecos.BaseClass):
 
                 res_dict = TransformerMatcher.train(
                     cur_prob,
-                    csr_codes=M_pred,
+                    csr_codes=M_pred, #把上层预测的M_pred传入作为csr_codes,因为仅预测特定nodes
                     val_prob=cur_val_prob,
                     val_csr_codes=val_M_pred,
                     train_params=cur_train_params,
                     pred_params=cur_pred_params,
-                    bootstrapping=bootstrapping,
+                    bootstrapping=bootstrapping, #继承上层参数
                     return_dict=True,
-                    return_pred_on_trn=return_pred_on_trn,
-                    return_embed_on_trn=return_embed_on_trn,
+                    return_pred_on_trn=return_pred_on_trn, #是否传出预测结果，最后一层不传
+                    return_embed_on_trn=return_embed_on_trn, #是否仅传出embed，最后一层仅使用only_encoder
                     saved_trn_pt=saved_trn_pt,
                     saved_val_pt=saved_val_pt,
                 )

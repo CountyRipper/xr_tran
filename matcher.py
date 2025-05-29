@@ -1245,8 +1245,8 @@ class TransformerMatcher(pecos.BaseClass):
     @classmethod
     def train(
         cls,
-        prob,
-        csr_codes=None,
+        prob, #type: MLProblemWithText
+        csr_codes=None, # 上层训练的结果，第一次训练时为None
         val_prob=None,
         val_csr_codes=None,
         train_params=None,
@@ -1296,6 +1296,7 @@ class TransformerMatcher(pecos.BaseClass):
         LOGGER.debug(f"TransformerMatcher train_params: {train_params.to_dict()}")
         LOGGER.debug(f"TransformerMatcher pred_params: {pred_params.to_dict()}")
         if prob.X_feat is None:
+            #如果prob是None的话，说明是transformer-only的训练，第一层
             pred_params.ensemble_method = "transformer-only"
 
         # save to a temp dir if not given
@@ -1304,7 +1305,8 @@ class TransformerMatcher(pecos.BaseClass):
             train_params.checkpoint_dir = temp_dir.name
 
         if train_params.init_model_dir:
-            matcher = cls.load(train_params.init_model_dir)
+            #有init_model_dir的话，说明是从已有模型继续训练
+            matcher = cls.load(train_params.init_model_dir) 
             LOGGER.info("Loaded model from {}.".format(train_params.init_model_dir))
             if prob.Y.shape[1] != matcher.nr_labels:
                 LOGGER.warning(
@@ -1315,6 +1317,7 @@ class TransformerMatcher(pecos.BaseClass):
                 )
                 matcher.text_encoder.config.num_labels = prob.Y.shape[1]
         else:
+            #没有init_model_dir的话，说明完全没有model，需要下载
             matcher = cls.download_model(
                 train_params.model_shortcut,
                 prob.Y.shape[1],
@@ -1328,13 +1331,18 @@ class TransformerMatcher(pecos.BaseClass):
         matcher.train_params = train_params
         matcher.pred_params = pred_params
 
+        #如果是pre_tokenize的话，直接将文本转化为tensor
         if train_params.pre_tokenize:
             saved_trn_pt = kwargs.get("saved_trn_pt", "")
             if not prob.is_tokenized:
+                #如果没有做tokenization
                 if saved_trn_pt and os.path.isfile(saved_trn_pt):
+                    #如果有预先保存的tokenization结果
+                    #直接加载
                     trn_tensors = torch.load(saved_trn_pt, weights_only=False)
                     LOGGER.info("trn tensors loaded_from {}".format(saved_trn_pt))
                 else:
+                    #没有保存，进行tokenization
                     trn_tensors = matcher.text_to_tensor(
                         prob.X_text,
                         max_length=pred_params.truncate_length,
